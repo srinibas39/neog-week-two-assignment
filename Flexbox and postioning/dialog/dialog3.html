@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIMPLE DIALOG</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Outfit:wght@100&family=Roboto:wght@100&family=Shalimar&family=Yuji+Boku&display=swap" rel="stylesheet">
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0px;
+        margin: 0px;
+        font-family: 'Montserrat', sans-serif;
+      }
+      .dialog-container {
+        height: 100vh;
+        width: 100vw;
+        background-color: #cbd5e1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        display: none;
+        
+      }
+      .dialog {
+        background-color: white;
+        height: 30vh;
+        width: 48vw;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .action-btn {
+        padding: 0.5rem;
+        border: none;
+        background-color: #dc2626;
+        color: white;
+        margin: 0.5rem;
+      }
+      .btn-container {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .alert {
+        padding: 1rem;
+        border: none;
+        background-color: #dc2626;
+        color: white;
+      }
+      li {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+       
+      }
+      ul{
+        height: 8rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+      .select{
+        background-color: #fecaca;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="btn-container">
+      <button class="alert">OPEN ALERT DIALOG</button>
+    </div>
+    <div class="dialog-container">
+      <div class="dialog">
+        <h1>UFC DIALOG HEADER</h1>
+        <ul>
+          <li class="select"><i class="fas fa-user-circle"></i>Item-1</li>
+          <li><i class="fas fa-user-circle"></i>Item-2</li>
+          <li><i class="fas fa-user-circle"></i>Item-3</li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      let alertBtn = document.querySelector(".alert");
+      let dialogCon = document.querySelector(".dialog-container");
+      let btnCon = document.querySelector(".btn-container");
+      let dialog = document.querySelector(".dialog");
+      let allList=document.querySelectorAll("li")
+      alertBtn.addEventListener("click", () => {
+        if (dialogCon.style.display !== "flex") {
+          btnCon.style.display = "none";
+          dialogCon.style.display = "flex";
+        }
+      });
+      dialogCon.addEventListener("click", () => {
+        dialogCon.style.display = "none";
+        btnCon.style.display = "flex";
+      });
+      dialog.addEventListener("click", (e) => {
+        e.stopPropagation();
+      });
+
+      allList.forEach((list)=>{
+          list.addEventListener("click",(e)=>{
+           removeSelect();   
+          list.classList.add("select");
+          })
+      })
+
+      let removeSelect=()=>{
+          allList.forEach((list)=>{
+              list.classList.remove("select")
+          })
+      }
+
+    </script>
+  </body>
+</html>
